@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Add Trip "
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textAllCaps="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tripNameId"
+                android:inputType="text"
+                android:hint="Trip Name"
+                android:drawableLeft="@drawable/ic_car"
+                android:drawablePadding="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tripDescriptionId"
+                android:inputType="textImeMultiLine"
+                android:hint="Trip Description"
+                android:scrollbars="vertical"
+                android:maxLines="2"
+                android:drawableLeft="@drawable/ic_create_black_24dp"
+                android:drawablePadding="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tripStartDateId"
+                android:hint="Trip Start Date"
+                android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                android:drawablePadding="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tripEndDateId"
+                android:hint="Trip End Date"
+                android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                android:drawablePadding="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Button Start -->
+        <LinearLayout
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/saveTripButtonId"
+                android:text="Save Your Trip"
+                android:background="@drawable/login_button_bg"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Button End-->
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

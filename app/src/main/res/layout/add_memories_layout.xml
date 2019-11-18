@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Add Memory"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginHorizontal="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <ImageView
+                    android:id="@+id/imageId"
+                    android:src="@drawable/iconfinder_camera_126587"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/imageFabButtonId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_camera_alt_black_24dp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/tripDescriptionId"
+                    android:inputType="textImeMultiLine"
+                    android:hint="Trip Description"
+                    android:scrollbars="vertical"
+                    android:maxLines="2"
+                    android:drawableLeft="@drawable/ic_create_black_24dp"
+                    android:drawablePadding="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Button Start -->
+    <LinearLayout
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/saveMemoriesButtonId"
+            android:text="Save Your Memories"
+            android:background="@drawable/login_button_bg"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Button End-->
+
+</LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

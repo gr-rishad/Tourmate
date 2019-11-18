@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- for logo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1.4">
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_marginBottom="20dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Create an account"
+                android:layout_marginHorizontal="35dp"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <!-- end logo part -->
+
+        <!-- Start Input field-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                android:textColorHint="#C1C1C1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/emailAddressId"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/passwordId"
+                    android:inputType="textPassword"
+                    android:hint="Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/confirmPasswordId"
+                    android:inputType="textPassword"
+                    android:hint=" Confirm Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/firstNameId"
+                        android:inputType="text"
+                        android:hint="First Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    app:helperTextTextAppearance="@style/TextInputLayoutHintText"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/lastNameId"
+                        android:inputType="text"
+                        android:hint="Last Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <!-- End Input field-->
+        <!-- Button Start -->
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/signUpButtonId"
+                android:text="Sign Up"
+                android:background="@drawable/login_button_bg"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Button End-->
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
