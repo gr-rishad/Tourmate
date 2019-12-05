@@ -20,7 +20,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +33,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -39,12 +49,18 @@ public class MemoriesFragment extends Fragment {
     private AlertDialog dialog;
     private FloatingActionButton addMemoriesFabBtn,cameraFabButton;
     private EditText tripDescription;
+    private String desc;
     private Button saveMemoriesBtn;
     private ImageView tripImage;
     private Bitmap bitmapImage = null;
-
+    private String downloadLink;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private StorageReference storageReference;
+    private  Uri selectedImage;
+    @SuppressWarnings("VisibleForTests")
+    private AddMemoriesModel addMemoriesModel;
+    private int i;
 
 
     public MemoriesFragment() {
@@ -65,6 +81,8 @@ public class MemoriesFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
+        storageReference= FirebaseStorage.getInstance().getReference();
+
 
         addMemoriesFabBtn= view.findViewById(R.id.addMemoriesFab);
         addMemoriesFabBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +91,7 @@ public class MemoriesFragment extends Fragment {
                 createMemories();
             }
         });
+
 
 
     }
@@ -124,13 +143,38 @@ public class MemoriesFragment extends Fragment {
             }
             else if(requestCode == 99){
                // Uri uri = data.getData();
-                Uri selectedImage = data.getData();
+                 selectedImage = data.getData();
                 tripImage.setImageURI(selectedImage);
                 // documentIV.setImageBitmap(bitmapImage);
             }
         }
     }
+    private void upLoadImage(){
 
+        StorageReference storage2= storageReference.child("upload"+UUID.randomUUID());
+        storage2.putFile(selectedImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                if (task.isSuccessful()){
+                    Toast.makeText(getContext(), "Upload Successfully", Toast.LENGTH_SHORT).show();
+                    AddMemories();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                downloadLink= taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+
+
+            }
+        });
+    }
     private void createMemories(){
 
         dialogBuilder= new AlertDialog.Builder(getContext());
@@ -138,9 +182,17 @@ public class MemoriesFragment extends Fragment {
         //
         tripImage= view.findViewById(R.id.imageId);
         cameraFabButton= view.findViewById(R.id.imageFabButtonId);
-        tripDescription= view.findViewById(R.id.tripDescriptionId);
+        tripDescription= view.findViewById(R.id.tourTripDescriptionId);
         saveMemoriesBtn= view.findViewById(R.id.saveMemoriesButtonId);
 
+        saveMemoriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upLoadImage();
+               // AddMemories();
+
+            }
+        });
 
         cameraFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,22 +213,37 @@ public class MemoriesFragment extends Fragment {
 
     private void AddMemories(){
 
+         i=1;
         String abc = firebaseAuth.getCurrentUser().getUid();
+        desc= tripDescription.getText().toString();
 
-        DatabaseReference objectRef= databaseReference.child("tourmate").child("expense").child(abc).child(TourDetailsActivity.tName);
+        final DatabaseReference objectRef= databaseReference.child("tourmate").child("expense").child(abc).child(TourDetailsActivity.tName);
 
-        objectRef.addValueEventListener(new ValueEventListener() {
+        String key = objectRef.push().getKey();
+
+
+        addMemoriesModel=new AddMemoriesModel(desc,downloadLink);
+
+        objectRef.child("tourMemorie").child("memories").child(key).setValue(addMemoriesModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onComplete(@NonNull Task<Void> task) {
+                i++;
+                Toast.makeText(getContext(), "Add Successfully", Toast.LENGTH_SHORT).show();
+
 
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
+
+
+
     }
+
+
 
 }
